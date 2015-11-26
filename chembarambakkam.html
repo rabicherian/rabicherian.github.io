@@ -5,123 +5,12 @@
     <title>
       Chennai Chembarambakkam Lake Water Stats Visualization
     </title>
-    <script type="text/javascript" src="http://www.google.com/jsapi"></script>
-    <script type="text/javascript">
-      google.load('visualization', '1');
-    </script>
-    <script type="text/javascript">
-      var winW = 500, winH = 300;
-      if (document.body && document.body.offsetWidth) {
-       winW = document.body.offsetWidth;
-       winH = document.body.offsetHeight;
-      }
-      if (document.compatMode == 'CSS1Compat' &&
-          document.documentElement &&
-          document.documentElement.offsetWidth ) {
-       winW = document.documentElement.offsetWidth;
-       winH = document.documentElement.offsetHeight;
-      }
-      if (window.innerWidth && window.innerHeight) {
-       winW = window.innerWidth;
-       winH = window.innerHeight;
-      }
-      function drawVisualization() {
-        var query = new google.visualization.Query("https://www.google.com/fusiontables/gvizdata?tq=select 'Date', 'Level (ft)', 'Full Tank Level (ft.)', 'Rainfall (mm)', 'Storage (mcft)', 'Full Capacity (mcft)', 'Inflow  (cusecs)', 'Outflow (cusecs)' from 18wXQIhybscIkpJpOdn9Y3gOqiUuLBoBoXp56i9FT where  Reservoir='CHEMBARAMBAKKAM' order by 'Date' limit 30");
-        query.send(handleQueryResponse);
-        function handleQueryResponse(response) {
-          if (response.isError()) {
-            alert('Error in query: ' + response.getMessage() + " " + response.getDetailedMessage());
-             return;
-          }
-          var data = response.getDataTable();
-          var wrapper = new google.visualization.ChartWrapper();
-          wrapper.setDataTable(data);
-          wrapper.setChartType("ComboChart");
-          wrapper.setContainerId("null");
-          wrapper.setOptions(             {
-               "hAxis": {
-                 "useFormatFromData": true,
-                 "viewWindow": {
-                   "max": null,
-                   "min": null
-                 },
-                 "minValue": null,
-                 "maxValue": null,
-                 "format": ""
-               },
-               "legend": "top",
-               "vAxes": [
-                 {
-                   "title": null,
-                   "minValue": null,
-                   "maxValue": null,
-                   "useFormatFromData": true,
-                   "viewWindow": {
-                     "max": null,
-                     "min": null
-                   }
-                 },
-                 {
-                   "useFormatFromData": true,
-                   "viewWindow": {
-                     "max": null,
-                     "min": null
-                   },
-                   "minValue": null,
-                   "maxValue": null
-                 }
-               ],
-               "animation": {
-                 "duration": 500
-               },
-               "type": "line",
-               "booleanRole": "certainty",
-               "series": [
-                 {
-                   "type": "line",
-                   "targetAxisIndex": 1
-                 },
-                 {
-                   "targetAxisIndex": 1
-                 },
-                 {
-                   "color": "#d0e0e3",
-                   "targetAxisIndex": 1,
-                   "type": "bars"
-                 },
-                 {
-                   "targetAxisIndex": 0,
-                   "color": "#109618"
-                 },
-                 {
-                   "type": "line",
-                   "targetAxisIndex": 0,
-                   "color": "#ff9900"
-                 },
-                 {
-                   "targetAxisIndex": 0
-                 }
-               ],
-               "width": "2000",
-               "height": "800",
-               "strictFirstColumnType": false,
-               "vAxis": {
-                 "format": ""
-               },
-               "title": "Chembarambakkam Lake Statistics"
-             });
-          wrapper.setOption("width", winW-20);
-          wrapper.setOption("height", winH-20);
-          wrapper.setOption("strictFirstColumnType", false);
-          wrapper.draw();
-        }
-      }
-;      google.setOnLoadCallback(drawVisualization);
-    </script>
   </head>
   <body style="font-family: Arial;border: 0 none;">
     <div id ="title"><h1>Chembarambakkam Lake Water Stats Visualization<h1></div>
     <div id="credits"><p>Data is collated daily from the <a href="http://chennaimetrowater.gov.in/public/lake.htm">Chennai Water Supply site</a>.</p></div>	 
-    <div id="visualization"></div>
+    <div id="visualization">
+      <iframe width="2000px' height='800px' scrolling='no' frameborder='no' src='https://www.google.com/fusiontables/embedviz?&containerId=gviz_canvas&viz=GVIZ&q=select%20'Date'%2C%20'Level%20(ft)'%2C%20'Full%20Tank%20Level%20(ft.)'%2C%20'Rainfall%20(mm)'%2C%20'Storage%C2%A0(mcft)'%2C%20'Full%20Capacity%20(mcft)'%2C%20'Inflow%20%C2%A0(cusecs)'%2C%20'Outflow%20(cusecs)'%20from%2018wXQIhybscIkpJpOdn9Y3gOqiUuLBoBoXp56i9FT%20where%20%20Reservoir%3D'CHEMBARAMBAKKAM'%20order%20by%20'Date'%20limit%2030&t=LINE&gco_hAxis=%7B%22useFormatFromData%22%3Atrue%2C%22viewWindow%22%3Anull%2C%22minValue%22%3Anull%2C%22maxValue%22%3Anull%2C%22viewWindowMode%22%3Anull%2C%22format%22%3A%22%22%7D&gco_legend=top&gco_title=Chembarambakkam%20Lake%20Statistics&gco_vAxes=%5B%7B%22title%22%3Anull%2C%22minValue%22%3Anull%2C%22maxValue%22%3Anull%2C%22useFormatFromData%22%3Atrue%2C%22viewWindow%22%3A%7B%22max%22%3Anull%2C%22min%22%3Anull%7D%7D%2C%7B%22useFormatFromData%22%3Atrue%2C%22viewWindow%22%3A%7B%22max%22%3Anull%2C%22min%22%3Anull%7D%2C%22minValue%22%3Anull%2C%22maxValue%22%3Anull%7D%5D&gco_curveType=&gco_animation=%7B%22duration%22%3A500%7D&gco_booleanRole=certainty&gco_lineWidth=2&gco_width=2000&gco_height=800&gco_strictFirstColumnType=false&gco_vAxis=%7B%22format%22%3A%22%22%7D&gco_series=%7B%220%22%3A%7B%22targetAxisIndex%22%3A1%7D%2C%221%22%3A%7B%22targetAxisIndex%22%3A1%7D%2C%222%22%3A%7B%22targetAxisIndex%22%3A1%7D%7D&width=2000&height=800'></iframe>
+    </div>
   </body>
 </html>
