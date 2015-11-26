@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>
+      Chennai Chembarambakkam Lake Water Stats Visualization
+    </title>
+    <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load('visualization', '1');
+    </script>
+    <script type="text/javascript">
+      var winW = 500, winH = 300;
+      if (document.body && document.body.offsetWidth) {
+       winW = document.body.offsetWidth;
+       winH = document.body.offsetHeight;
+      }
+      if (document.compatMode == 'CSS1Compat' &&
+          document.documentElement &&
+          document.documentElement.offsetWidth ) {
+       winW = document.documentElement.offsetWidth;
+       winH = document.documentElement.offsetHeight;
+      }
+      if (window.innerWidth && window.innerHeight) {
+       winW = window.innerWidth;
+       winH = window.innerHeight;
+      }
+      function drawVisualization() {
+        var query = new google.visualization.Query("https://www.google.com/fusiontables/gvizdata?tq=select 'Date', 'Level (ft)', 'Full Tank Level (ft.)', 'Rainfall (mm)', 'Storage (mcft)', 'Full Capacity (mcft)', 'Inflow  (cusecs)', 'Outflow (cusecs)' from 18wXQIhybscIkpJpOdn9Y3gOqiUuLBoBoXp56i9FT where  Reservoir='CHEMBARAMBAKKAM' order by 'Date' limit 30");
+        query.send(handleQueryResponse);
+        function handleQueryResponse(response) {
+          if (response.isError()) {
+            alert('Error in query: ' + response.getMessage()" " + response.getDetailedMessage());
+             return;
+          }
+          var data = response.getDataTable();
+          var wrapper = new google.visualization.ChartWrapper();
+          wrapper.setDataTable(data);
+          wrapper.setChartType("ComboChart");
+          wrapper.setContainerId("null");
+          wrapper.setOptions(             {
+               "hAxis": {
+                 "useFormatFromData": true,
+                 "viewWindow": {
+                   "max": null,
+                   "min": null
+                 },
+                 "minValue": null,
+                 "maxValue": null,
+                 "format": ""
+               },
+               "legend": "top",
+               "vAxes": [
+                 {
+                   "title": null,
+                   "minValue": null,
+                   "maxValue": null,
+                   "useFormatFromData": true,
+                   "viewWindow": {
+                     "max": null,
+                     "min": null
+                   }
+                 },
+                 {
+                   "useFormatFromData": true,
+                   "viewWindow": {
+                     "max": null,
+                     "min": null
+                   },
+                   "minValue": null,
+                   "maxValue": null
+                 }
+               ],
+               "animation": {
+                 "duration": 500
+               },
+               "type": "line",
+               "booleanRole": "certainty",
+               "series": [
+                 {
+                   "type": "line",
+                   "targetAxisIndex": 1
+                 },
+                 {
+                   "targetAxisIndex": 1
+                 },
+                 {
+                   "color": "#d0e0e3",
+                   "targetAxisIndex": 1,
+                   "type": "bars"
+                 },
+                 {
+                   "targetAxisIndex": 0,
+                   "color": "#109618"
+                 },
+                 {
+                   "type": "line",
+                   "targetAxisIndex": 0,
+                   "color": "#ff9900"
+                 },
+                 {
+                   "targetAxisIndex": 0
+                 }
+               ],
+               "width": "2000",
+               "height": "800",
+               "strictFirstColumnType": false,
+               "vAxis": {
+                 "format": ""
+               },
+               "title": "Chembarambakkam Lake Statistics"
+             });
+          wrapper.setOption("width", winW-20);
+          wrapper.setOption("height", winH-20);
+          wrapper.setOption("strictFirstColumnType", false);
+          wrapper.draw();
+        }
+      }
+;      google.setOnLoadCallback(drawVisualization);
+    </script>
+  </head>
+  <body style="font-family: Arial;border: 0 none;">
+    <div id ="title"><h1>Chembarambakkam Lake Water Stats Visualization<h1></div>
+    <div id="credits"><p>Data is collated daily from the <a href="http://chennaimetrowater.gov.in/public/lake.htm">Chennai Water Supply site</a>.</p></div>	 
+    <div id="visualization"></div>
+  </body>
+</html>
